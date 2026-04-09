@@ -1,76 +1,63 @@
-let inputBox = document.getElementById("input-box")
-let addBtn = document.getElementById("add")
-let listContainer = document.getElementById("listcontainer")
+let inputBox = document.getElementById("input-box");
+let addBtn = document.getElementById("add");
+let listContainer = document.getElementById("listcontainer");
 
-let tasks = []
-let storedTasks = localStorage.getItem("tasks")
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-if (storedTasks) {
-    tasks = JSON.parse(storedTasks)
-    renderTasks()
-}
+renderTasks();
 
 function addTask() {
-    let value = inputBox.value.trim()
-
-    if (value === "") return
+    let value = inputBox.value.trim();
+    if (value === "") return;
 
     tasks.push({
         text: value,
         completed: false
-    })  
+    });
 
-    saveTasks()
-    renderTasks()
-
-    inputBox.value = ""
+    saveTasks();
+    renderTasks();
+    inputBox.value = "";
 }
 
 function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks))
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function renderTasks() {
-    listContainer.innerHTML = ""
+    listContainer.innerHTML = "";
 
-    tasks.forEach(function(task, index) {
-        let li = document.createElement("li")
+    tasks.forEach((task, index) => {
+        let li = document.createElement("li");
 
-        let span = document.createElement("span")
-        span.innerText = task.text
+        li.innerHTML = `
+            <span>${task.text}</span>
+            <button class="deleteBtn">❌</button>
+        `;
 
         if (task.completed) {
-            li.classList.add("completed")
+            li.classList.add("completed");
         }
 
-        let dltBtn = document.createElement("button")
-        dltBtn.innerText = "❌"
-        dltBtn.classList.add("deleteBtn")
+        li.addEventListener("click", () => {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            renderTasks();
+        });
 
-        dltBtn.addEventListener("click", function(e) {
-            e.stopPropagation()
-            tasks.splice(index, 1)
-            saveTasks()
-            renderTasks()
-        })
+        li.querySelector(".deleteBtn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+        });
 
-            li.addEventListener("click", function() {
-            tasks[index].completed = !tasks[index].completed
-            saveTasks()
-            renderTasks()
-        })
-
-        li.appendChild(span)
-        li.appendChild(dltBtn)
-
-        listContainer.appendChild(li)
-    })
+        listContainer.appendChild(li);
+    });
 }
 
-addBtn.addEventListener("click", addTask)
+addBtn.addEventListener("click", addTask);
 
-inputBox.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        addTask()
-    }
-})
+inputBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addTask();
+});
