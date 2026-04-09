@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My To-Do App</title>
+    <title>FocusAI - Productivity App</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container">
-        <input type="text" id="input-box" placeholder="Enter your task here">
-        <button id="add">Add</button>
-        <ul id="listcontainer"></ul>
-    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="FocusAI logo">
+            <h2>FocusAI</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+        </ul>
+
+        <!-- Hamburger -->
+        <div class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Boost Your Productivity with AI</h1>
+            <p>Plan tasks, stay focused, and achieve more with smart AI tools.</p>
+            <button class="started-btn">Start Free Trial</button>
+        </div>
+
+        <div class="hero-img">
+            <img src="FocusAI_logo.jpg" alt="FocusAI App" loading="lazy">
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features">
+        <h2>Our Features</h2>
+
+        <div class="feature-container">
+
+            <div class="card">
+                <h3><i class="fa-solid fa-bolt"></i> Smart Task Planner</h3>
+                <p>Organize your daily tasks efficiently with AI support.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-bolt"></i> Focus Mode</h3>
+                <p>Stay distraction-free and boost your productivity.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-bolt"></i> AI Suggestions</h3>
+                <p>Get smart recommendations to improve your workflow.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h2>© 2026 FocusAI. All rights reserved.</h2>
+
+        <div class="socials">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-
 </body>
-
 </html>
